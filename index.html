@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <!--
+  UPDATED   : 2026-09-25_2150 UTC — Merged April cross-platform fixes (iOS Safari overlays via
+              -webkit-backdrop-filter, no iOS zoom on form focus, Firefox scrollbars).
   UPDATED   : 2026-09-25_1639 UTC — Added Portfolio Companies: new "Portfolio" page + nav link
               and a home-page section showing cecethepiece, 3 Lakes Logistics and
               Jacks of All Trades, with what IEBC built for each and links to their sites.
@@ -70,8 +72,9 @@ function initContactPage(){
   --ff-b:'Inter',system-ui,sans-serif;
   --ff-m:'JetBrains Mono','Courier New',monospace;
 }
-html{scroll-behavior:smooth;font-size:16px}
-body{font-family:var(--ff-b);color:var(--text);background:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth;font-size:16px;scrollbar-width:thin;scrollbar-color:var(--gold) var(--off2)}
+body{font-family:var(--ff-b);color:var(--text);background:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-tap-highlight-color:transparent}
+@media(max-width:768px){input,select,textarea{font-size:16px!important}}
 ::-webkit-scrollbar{width:16px;height:16px}::-webkit-scrollbar-track{background:var(--off2);border-radius:8px}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:8px;border:3px solid var(--off2)}::-webkit-scrollbar-thumb:hover{background:var(--gold2);cursor:pointer}::-webkit-scrollbar-button{display:none}
 
 /* ── PAGE SYSTEM ── */
@@ -79,7 +82,7 @@ body{font-family:var(--ff-b);color:var(--text);background:var(--white);overflow-
 main{padding-top:66px}
 
 /* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 5vw;box-shadow:var(--shadow)}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 5vw;box-shadow:var(--shadow)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px;max-width:1200px;margin:0 auto}
 .nav-logo{font-family:var(--ff-h);font-size:1.2rem;font-weight:800;color:var(--navy);text-decoration:none;line-height:1.1}
 .nav-logo small{display:block;font-family:var(--ff-m);font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-top:2px}
@@ -275,7 +278,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255
 .cal-note{font-size:.68rem;color:var(--text3);margin-top:7px;font-family:var(--ff-m)}
 
 /* ── BOOKING MODAL ── */
-.booking-overlay{position:fixed;inset:0;background:rgba(11,33,64,.7);backdrop-filter:blur(6px);z-index:2000;display:none;align-items:center;justify-content:center}
+.booking-overlay{position:fixed;inset:0;background:rgba(11,33,64,.7);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:2000;display:none;align-items:center;justify-content:center}
 .booking-overlay.open{display:flex}
 .booking-modal{background:var(--white);border-radius:16px;width:min(780px,95vw);max-height:92vh;overflow:hidden;box-shadow:0 32px 80px rgba(11,33,64,.3);display:flex;flex-direction:column}
 .booking-modal-hd{padding:16px 22px;background:var(--navy);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
@@ -446,7 +449,7 @@ footer{background:var(--navy);padding:52px 5vw 28px}
 }
 
 /* ── CHECKOUT — FULL PAGE ── */
-.co-overlay{position:fixed;inset:0;background:rgba(11,33,64,.82);z-index:9000;display:flex;align-items:stretch;justify-content:center;backdrop-filter:blur(10px)}
+.co-overlay{position:fixed;inset:0;background:rgba(11,33,64,.82);z-index:9000;display:flex;align-items:stretch;justify-content:center;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 .co-modal{background:#fff;width:100%;max-width:1200px;height:100vh;display:flex;flex-direction:column;box-shadow:0 0 80px rgba(0,0,0,.5);overflow:hidden}
 .co-hdr{background:linear-gradient(135deg,#0B2140,#17377A);padding:14px 28px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
 .co-hdr h2{font-family:var(--ff-h);font-size:1.05rem;font-weight:800;color:#fff;margin:0 0 2px}
@@ -2574,7 +2577,7 @@ footer{background:var(--navy);padding:52px 5vw 28px}
 .cp-select-wrapper select:focus{border-color:var(--gold)}
 .cp-select-wrapper::after{content:"▾";position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--gold);font-size:.8rem;pointer-events:none}
 /* Email modal */
-.cp-email-modal{display:none;position:fixed;inset:0;background:rgba(11,33,64,.6);z-index:5000;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.cp-email-modal{display:none;position:fixed;inset:0;background:rgba(11,33,64,.6);z-index:5000;align-items:center;justify-content:center;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
 .cp-email-modal.open{display:flex}
 .cp-email-box{background:#fff;border-radius:14px;padding:26px;max-width:520px;width:90%;box-shadow:0 24px 60px rgba(11,33,64,.25)}
 .cp-email-title{font-family:var(--ff-h);font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:4px}
