@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <!--
+  UPDATED   : 2026-09-25_1639 UTC — Added Portfolio Companies: new "Portfolio" page + nav link
+              and a home-page section showing cecethepiece, 3 Lakes Logistics and
+              Jacks of All Trades, with what IEBC built for each and links to their sites.
+-->
+<!--
   IEBC Website — Fix: hire page not showing — nav overflow (13 items)
   Hire page: individual checkboxes + dept toggle + headcount pkgs · Hire a Consultant = blue CTA button
   Added to mobile nav · bars confirmed at body level
@@ -509,6 +514,31 @@ footer{background:var(--navy);padding:52px 5vw 28px}
 .co-fi:focus{border-color:var(--navy)}
 
 </style>
+
+<!-- ═══ PORTFOLIO COMPANIES — added 2026-09-25_1639 UTC ═══ -->
+<style>
+.pf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.pf-card{background:var(--white);border:1.5px solid var(--border);border-radius:14px;padding:26px;display:flex;flex-direction:column;transition:all .22s}
+.pf-card:hover{border-color:var(--gold);box-shadow:var(--shadow-lg);transform:translateY(-3px)}
+.pf-top{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.pf-logo{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+.pf-name{font-family:var(--ff-h);font-size:1.12rem;font-weight:800;color:var(--navy);line-height:1.2}
+.pf-ind{font-size:.72rem;color:var(--text3);margin-top:3px}
+.pf-blurb{font-size:.88rem;color:var(--text2);line-height:1.7;margin-bottom:14px}
+.pf-built-lbl{font-family:var(--ff-m);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.pf-built{list-style:none;margin:0 0 18px;padding:0}
+.pf-built li{font-size:.82rem;color:var(--text2);line-height:1.55;padding:5px 0 5px 22px;position:relative;border-bottom:1px solid var(--off2)}
+.pf-built li:last-child{border-bottom:none}
+.pf-built li::before{content:'✓';position:absolute;left:0;top:5px;font-weight:800;color:var(--gold)}
+.pf-stack{display:inline-block;font-size:.68rem;font-weight:700;padding:4px 10px;border-radius:20px;margin-bottom:16px;align-self:flex-start}
+.pf-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.pf-visit{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:9px;background:var(--navy);color:var(--gold2);font-size:.82rem;font-weight:700;text-decoration:none;transition:all .15s}
+.pf-visit:hover{background:var(--navy2);transform:translateY(-1px)}
+.pf-loc{font-size:.72rem;color:var(--text3)}
+.pf-mini{cursor:pointer}
+.pf-mini .pf-blurb{margin-bottom:16px}
+@media(max-width:960px){.pf-grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 
@@ -522,6 +552,7 @@ footer{background:var(--navy);padding:52px 5vw 28px}
       <a onclick="showPage('pricing')" id="nav-pricing">Pricing</a>
       <a onclick="showPage('formation')" id="nav-formation">Formation</a>
       <a onclick="showPage('industries')" id="nav-industries">Industries</a>
+      <a onclick="showPage('portfolio')" id="nav-portfolio">Portfolio</a>
       <a onclick="showPage('about')" id="nav-about">About</a>
       <a onclick="showPage('accounting')" id="nav-accounting">📊 Accounting</a>
       <a onclick="showPage('hire')" id="nav-hire" style="color:#fff;font-weight:800;background:linear-gradient(135deg,#1d4ed8,#2563eb);border-radius:8px;padding:7px 14px;border:none">🧠 Hire a Consultant</a>
@@ -540,6 +571,7 @@ footer{background:var(--navy);padding:52px 5vw 28px}
   <a onclick="showPage('formation');toggleMobileNav()">Formation</a>
   <a onclick="showPage('industries');toggleMobileNav()">Industries</a>
   <a onclick="showPage('how');toggleMobileNav()">How It Works</a>
+  <a onclick="showPage('portfolio');toggleMobileNav()">Portfolio</a>
   <a onclick="showPage('about');toggleMobileNav()">About</a>
   <a onclick="showPage('accounting');toggleMobileNav()">📊 Accounting</a>
   <a onclick="showPage('hire');toggleMobileNav()" style="color:#fff!important;font-weight:800;background:linear-gradient(135deg,#1d4ed8,#2563eb);border-radius:8px;padding:10px 14px;margin:4px 0;display:block;text-align:center">🧠 Hire a Consultant</a>
@@ -729,6 +761,33 @@ footer{background:var(--navy);padding:52px 5vw 28px}
     </div>
   </section>
 
+  <!-- PORTFOLIO COMPANIES (added 2026-09-25_1639 UTC) -->
+  <section class="section">
+    <div class="container">
+      <span class="section-label" style="text-align:center;display:block">Portfolio Companies</span>
+      <h2 class="section-title" style="text-align:center">Real businesses.<br><em>Running on IEBC.</em></h2>
+      <p style="text-align:center;font-size:1rem;color:var(--text2);max-width:600px;margin:0 auto 40px;line-height:1.82">These are live partner businesses we've built for. Every site below is real and online. Click through and see the work for yourself.</p>
+      <div class="pf-grid">
+        <div class="pf-card pf-mini" style="border-top:3px solid #7C3AED" onclick="showPage('portfolio')">
+          <div class="pf-top"><div class="pf-logo" style="background:#f3e8ff">🎨</div><div><div class="pf-name">cecethepiece</div><div class="pf-ind">Creative Professional · Original Art</div></div></div>
+          <div class="pf-blurb">One-of-a-kind resin, glass and mixed-media art by Cece — a dancer turned artist whose work includes custom memorial keepsakes.</div>
+          <div class="pf-foot"><a class="pf-visit" href="https://cecethepiece.com" target="_blank" rel="noopener" onclick="event.stopPropagation()">Visit cecethepiece.com ↗</a><span class="pf-loc">📍 Renton, WA</span></div>
+        </div>
+        <div class="pf-card pf-mini" style="border-top:3px solid #1d4ed8" onclick="showPage('portfolio')">
+          <div class="pf-top"><div class="pf-logo" style="background:#eff4ff">🚚</div><div><div class="pf-name">3 Lakes Logistics</div><div class="pf-ind">Logistics & Trucking</div></div></div>
+          <div class="pf-blurb">A trucking carrier that runs on AI, from dispatch to settlement: Delivering Trust Across America.</div>
+          <div class="pf-foot"><a class="pf-visit" href="https://www.3lakeslogistics.com" target="_blank" rel="noopener" onclick="event.stopPropagation()">Visit 3lakeslogistics.com ↗</a><span class="pf-loc">📍 Nationwide carrier</span></div>
+        </div>
+        <div class="pf-card pf-mini" style="border-top:3px solid #0369a1" onclick="showPage('portfolio')">
+          <div class="pf-top"><div class="pf-logo" style="background:#e0f2fe">🔨</div><div><div class="pf-name">Jacks of All Trades Community Development</div><div class="pf-ind">Nonprofit · Skilled Trades</div></div></div>
+          <div class="pf-blurb">A Detroit nonprofit that rebuilds neighborhoods and futures through skilled-trades training.</div>
+          <div class="pf-foot"><a class="pf-visit" href="https://joatamp.org" target="_blank" rel="noopener" onclick="event.stopPropagation()">Visit joatamp.org ↗</a><span class="pf-loc">📍 Detroit, MI</span></div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:30px"><a onclick="showPage('portfolio')" class="btn-navy">See What We Built for Each →</a></div>
+    </div>
+  </section>
+
   <!-- TESTIMONIALS -->
   <section class="section bg-off">
     <div class="container">
@@ -767,6 +826,48 @@ footer{background:var(--navy);padding:52px 5vw 28px}
     </div>
   </div>
 </div><!-- /page-home -->
+
+<!-- ══ PAGE: PORTFOLIO (added 2026-09-25_1639 UTC) ══ -->
+<div class="page" id="page-portfolio">
+  <section class="section bg-navy">
+    <div class="container" style="text-align:center">
+      <span class="section-label" style="color:var(--gold2)">Portfolio Companies</span>
+      <h1 class="section-title" style="color:#fff">Our partners, <em>live and growing.</em></h1>
+      <p style="font-size:1rem;color:rgba(255,255,255,.72);max-width:640px;margin:0 auto;line-height:1.8">IEBC works with each of these businesses. For each one we designed and built the website, the operations hub, and the automation behind them. Visit their sites and see the systems at work.</p>
+    </div>
+  </section>
+  <section class="section bg-off">
+    <div class="container">
+      <div class="pf-grid">
+        <div class="pf-card" id="pf-cece" style="border-top:3px solid #7C3AED">
+          <div class="pf-top"><div class="pf-logo" style="background:#f3e8ff">🎨</div><div><div class="pf-name">cecethepiece</div><div class="pf-ind">Creative Professional · Original Art</div></div></div>
+          <span class="pf-stack" style="background:#f3e8ff;color:#7C3AED">Website + Business Hub</span>
+          <div class="pf-blurb">One-of-a-kind resin, glass and mixed-media art by Cece — a dancer turned artist whose work includes custom memorial keepsakes.</div>
+          <div class="pf-built-lbl">What IEBC built</div>
+          <ul class="pf-built"><li>Public storefront: shop by series, prints and small pieces, with a full-screen gallery</li><li>Online Buy Now checkout, plus deposits for custom commissions</li><li>Art rental booking and online classes sign-up</li><li>cecepieceshub, a business hub for inventory, publishing new pieces, payment links, and social and email marketing</li><li>Studio Drop newsletter and Instagram feed built into the site</li></ul>
+          <div class="pf-foot"><a class="pf-visit" href="https://cecethepiece.com" target="_blank" rel="noopener">Visit cecethepiece.com ↗</a><span class="pf-loc">📍 Renton, WA</span></div>
+        </div>
+        <div class="pf-card" id="pf-3ll" style="border-top:3px solid #1d4ed8">
+          <div class="pf-top"><div class="pf-logo" style="background:#eff4ff">🚚</div><div><div class="pf-name">3 Lakes Logistics</div><div class="pf-ind">Logistics & Trucking</div></div></div>
+          <span class="pf-stack" style="background:#eff4ff;color:#1d4ed8">Website + Command Center + Driver App</span>
+          <div class="pf-blurb">A trucking carrier that runs on AI, from dispatch to settlement: Delivering Trust Across America.</div>
+          <div class="pf-built-lbl">What IEBC built</div>
+          <ul class="pf-built"><li>Public website with carrier and driver sign-up</li><li>EagleEye Command Center for dispatch, fleet, leads and revenue in one place</li><li>Hawk driver app (PWA and Android): loads, HOS, documents, messages and pay</li><li>AI agent workforce for onboarding, safety (Shield) and weekly driver settlements (Settler)</li><li>E-signature contract library: carrier, lease-on, dispatcher and factoring agreements</li></ul>
+          <div class="pf-foot"><a class="pf-visit" href="https://www.3lakeslogistics.com" target="_blank" rel="noopener">Visit 3lakeslogistics.com ↗</a><span class="pf-loc">📍 Nationwide carrier</span></div>
+        </div>
+        <div class="pf-card" id="pf-joat" style="border-top:3px solid #0369a1">
+          <div class="pf-top"><div class="pf-logo" style="background:#e0f2fe">🔨</div><div><div class="pf-name">Jacks of All Trades Community Development</div><div class="pf-ind">Nonprofit · Skilled Trades</div></div></div>
+          <span class="pf-stack" style="background:#e0f2fe;color:#0369a1">Website + Command Center</span>
+          <div class="pf-blurb">A Detroit nonprofit that rebuilds neighborhoods and futures through skilled-trades training.</div>
+          <div class="pf-built-lbl">What IEBC built</div>
+          <ul class="pf-built"><li>Full nonprofit website: mission, programs, impact, get involved, shop and contact</li><li>50/50 raffle hub with tiers, a countdown, and Zeffy ticketing with QR codes</li><li>Before-and-after renovation gallery and a live impact tracker</li><li>Online enrollment for trades training and volunteer sign-up</li><li>Command Center admin for leads, fundraising totals and renovation milestones, with SMS outreach</li></ul>
+          <div class="pf-foot"><a class="pf-visit" href="https://joatamp.org" target="_blank" rel="noopener">Visit joatamp.org ↗</a><span class="pf-loc">📍 Detroit, MI</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="cta-band"><div class="container"><h2>Want to be our next portfolio company?</h2><p>Book a free 30-minute discovery call. We'll show you exactly what we'd build for your business.</p><div class="cta-btns"><button onclick="openCheckout('growth')" class="btn-gold">🛒 Buy Now — Get Started</button><a onclick="showPage('contact');setTimeout(initContactPage,100)" class="btn-white-out">📅 Book a Free Call</a></div></div></div>
+</div><!-- /page-portfolio -->
 
 <!-- ══ PAGE: SERVICES ══ -->
 <div class="page" id="page-services">
