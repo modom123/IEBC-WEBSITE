@@ -1,0 +1,51 @@
+# ────────────────────────────────────────────────────────────────
+#  FILE    : .github/workflows/deploy-hostinger.yml
+#  CREATED : 2026-09-25_1710 UTC
+#  PURPOSE : Auto-deploy the IEBC website to Hostinger over FTP.
+#            Runs on every push to main (i.e. when a PR is merged).
+#            Can also be run by hand from the Actions tab, with an
+#            optional dry run that only lists what would be uploaded.
+#  SETUP   : Add one repository secret, FTP_PASSWORD
+#            (GitHub → Settings → Secrets and variables → Actions).
+#            Server and username are not secret and live below.
+# ────────────────────────────────────────────────────────────────
+name: Deploy to Hostinger
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run: list changes without uploading"
+        type: boolean
+        default: true
+
+concurrency:
+  group: deploy-hostinger
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Upload site via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: 195.35.10.93                           # ftp://iebusinessconsultants.com
+          username: u397510252.iebusinessconsultants.com
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftp
+          local-dir: ./
+          server-dir: public_html/
+          # Only changed files are uploaded; nothing already on the server
+          # is deleted unless this workflow uploaded it earlier.
+          dry-run: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+          exclude: |
+            **/.git*
+            **/.git*/**
+            .github/**
+            index.1html
+            **/*.md
