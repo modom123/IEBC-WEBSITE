@@ -4,6 +4,8 @@
               17-class catalog (free webinar, self-paced, industry tracks, live cohorts,
               team training, certification), full syllabi, membership, and an enrollment
               form that feeds the hub pipeline (source: academy_enrollment). Home-page teaser.
+              Fixed hub writes: SITE_DB calls chained .catch(), which Supabase queries don't
+              have, so forms threw once Supabase was connected. Now use siteSaveProspect().
   UPDATED   : 2026-09-26 UTC — Ceces Pieces link corrected to https://www.cecespieces.shop/
   UPDATED   : 2026-09-26 UTC — Portfolio: cecethepiece renamed to "Ceces Pieces" (link unchanged).
   UPDATED   : 2026-09-25_2150 UTC — Merged April cross-platform fixes (iOS Safari overlays via
@@ -3563,6 +3565,28 @@ let SITE_DB = null;
   }
 })();
 
+// ── Hub writes (updated 2026-10-01_1538 UTC) ──
+// Supabase queries are thenables without .catch(), so chaining .catch() threw and stopped
+// form handlers. These helpers await the query and check .error instead. Website ids
+// ('intake-…', 'academy-…') aren't UUIDs; if the hub table rejects them, the row is
+// inserted again without an id so the database assigns one.
+async function siteSaveProspect(row){
+  if(!SITE_DB) return false;
+  try{
+    let r = await SITE_DB.from('hub_prospects').upsert([row], {onConflict:'id'});
+    if(!r.error) return true;
+    const {id, ...noId} = row;
+    r = await SITE_DB.from('hub_prospects').insert([noId]);
+    if(!r.error) return true;
+    console.warn('[IEBC] Lead not saved to hub:', r.error.message);
+  }catch(e){ console.warn('[IEBC] Lead not saved to hub:', e.message); }
+  return false;
+}
+async function siteLogActivity(action, entity){
+  if(!SITE_DB) return;
+  try{ await SITE_DB.from('hub_activity').insert([{user_name:'Website', action, entity}]); }catch(e){}
+}
+
 // ── MODULE MAP ───────────────────────────────────────────────────────
 const MODULE_MAP = {
   logistics:  { core:['CRM','Invoice Tracker','Revenue Dashboard'], hub:['Load Board & Dispatch','Driver Management','CRM','Invoice Tracker','Revenue Dashboard','E-Signature'], bundle:['Load Board & Dispatch','Driver Management','CRM','Invoice Tracker','Revenue Dashboard','E-Signature','Calendar Booking'] },
@@ -3714,9 +3738,9 @@ async function onBookingConfirmed(payload){
       est_value: 4500,
     };
     // Write to hub_prospects (read by ConsultantHub)
-    try{ await SITE_DB.from('hub_prospects').upsert([prospect], {onConflict:'id'}); }catch(e){}
+    await siteSaveProspect(prospect);
     // Also write to hub_activity so hub dashboard shows the notification
-    try{ await SITE_DB.from('hub_activity').insert([{user_name:'Website', action:'New discovery call booked', entity: name + ' — ' + (eventAt ? new Date(eventAt).toLocaleString() : 'TBD')}]); }catch(e){}
+    await siteLogActivity('New discovery call booked', name + ' — ' + (eventAt ? new Date(eventAt).toLocaleString() : 'TBD'));
   }
   await sendWelcomeEmail({name,email,eventAt,evtName});
   showBookingSuccess(name,email,eventAt);
@@ -3785,8 +3809,8 @@ function submitForm(){
       est_value: intake.est_value || 4500,
       created_at: intake.submitted_at,
     };
-    SITE_DB.from('hub_prospects').upsert([formProspect], {onConflict:'id'}).catch(()=>{});
-    SITE_DB.from('hub_activity').insert([{user_name:'Website', action:'New inquiry submitted', entity: intake.contact + ' — ' + industry}]).catch(()=>{});
+    siteSaveProspect(formProspect);
+    siteLogActivity('New inquiry submitted', intake.contact + ' — ' + industry);
   }
 
   // Success
@@ -4813,17 +4837,14 @@ function demoSubmit() {
 
   // Write to Supabase if connected
   if (typeof SITE_DB !== 'undefined' && SITE_DB) {
-    SITE_DB.from('hub_prospects').upsert([{
+    siteSaveProspect({
       id: lead.id, name: lead.name, contact: lead.name,
       email: lead.email, phone: lead.phone,
       industry: _demoIndustry, stage: 'new', heat: 'hot',
       source: 'demo_request', notes: lead.notes,
       est_value: 4500, created_at: lead.submitted_at,
-    }], {onConflict:'id'}).catch(function(){});
-    SITE_DB.from('hub_activity').insert([{
-      user_name: 'Website', action: 'Demo requested',
-      entity: first + ' ' + last + ' — ' + (data.name || _demoIndustry)
-    }]).catch(function(){});
+    });
+    siteLogActivity('Demo requested', first + ' ' + last + ' — ' + (data.name || _demoIndustry));
   }
 
   // Open email to IEBC with all the lead info
@@ -6711,15 +6732,14 @@ function acSubmitEnroll(){
     stage:'new', heat: c.price===0?'warm':'hot', source:'academy_enrollment', est_value:est,
     notes:`ACADEMY ENROLLMENT\nClass: ${c.title}\nPrice: ${acPrice(c)}\nEnrolling as: ${type}\nSeats: ${seats}\nBusiness: ${val('ac-f-biz')}\nGoal: ${val('ac-f-notes')}`,
   };
-  try{ const q=JSON.parse(localStorage.getItem('iebc_intake_queue')||'[]'); q.unshift(rec); localStorage.setItem('iebc_intake_queue',JSON.stringify(q)); }catch(e){}
   try{ const q=JSON.parse(localStorage.getItem('iebc_academy_enrollments')||'[]'); q.unshift(rec); localStorage.setItem('iebc_academy_enrollments',JSON.stringify(q)); }catch(e){}
-  if(typeof SITE_DB!=='undefined' && SITE_DB){
-    SITE_DB.from('hub_prospects').upsert([{
+  if(SITE_DB){
+    siteSaveProspect({
       id:rec.id, name, contact:name, email, phone:rec.phone, industry:'Academy',
       stage:'new', heat:rec.heat, source:'academy_enrollment', notes:rec.notes,
       est_value:est, created_at:rec.submitted_at,
-    }],{onConflict:'id'}).catch(()=>{});
-    SITE_DB.from('hub_activity').insert([{user_name:'Website', action:'New Academy enrollment', entity:name+' — '+c.title}]).catch(()=>{});
+    });
+    siteLogActivity('New Academy enrollment', name+' — '+c.title);
   }
   document.getElementById('ac-m-body').innerHTML = `
     <div style="text-align:center;padding:16px 6px">
