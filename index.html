@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <!--
+  UPDATED   : 2026-10-01_1538 UTC — Added IEBC Academy: new "Academy" page + nav link with a
+              17-class catalog (free webinar, self-paced, industry tracks, live cohorts,
+              team training, certification), full syllabi, membership, and an enrollment
+              form that feeds the hub pipeline (source: academy_enrollment). Home-page teaser.
   UPDATED   : 2026-09-26 UTC — Ceces Pieces link corrected to https://www.cecespieces.shop/
   UPDATED   : 2026-09-26 UTC — Portfolio: cecethepiece renamed to "Ceces Pieces" (link unchanged).
   UPDATED   : 2026-09-25_2150 UTC — Merged April cross-platform fixes (iOS Safari overlays via
@@ -544,6 +548,100 @@ footer{background:var(--navy);padding:52px 5vw 28px}
 .pf-mini .pf-blurb{margin-bottom:16px}
 @media(max-width:960px){.pf-grid{grid-template-columns:1fr}}
 </style>
+<!-- ═══ IEBC ACADEMY — added 2026-10-01_1538 UTC ═══ -->
+<style>
+.ac-hero-stats{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:28px}
+.ac-hero-stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:14px 20px;min-width:150px}
+.ac-hero-stat b{display:block;font-family:var(--ff-h);font-size:1.5rem;color:var(--gold3);line-height:1.1}
+.ac-hero-stat span{font-size:.74rem;color:rgba(255,255,255,.7)}
+.ac-tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:30px}
+.ac-tab{font-family:var(--ff-b);font-size:.82rem;font-weight:600;padding:9px 16px;border-radius:30px;border:1.5px solid var(--border2);background:var(--white);color:var(--text2);cursor:pointer;transition:all .15s}
+.ac-tab:hover{border-color:var(--navy);color:var(--navy)}
+.ac-tab.active{background:var(--navy);border-color:var(--navy);color:var(--gold2)}
+.ac-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.ac-card{background:var(--white);border:1.5px solid var(--border);border-radius:14px;padding:24px;display:flex;flex-direction:column;transition:all .22s;position:relative}
+.ac-card:hover{border-color:var(--gold);box-shadow:var(--shadow-lg);transform:translateY(-3px)}
+.ac-card-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+.ac-icon{width:46px;height:46px;border-radius:12px;background:var(--gold-lt);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+.ac-fmt{font-family:var(--ff-m);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;padding:4px 9px;border-radius:20px;background:var(--off2);color:var(--navy3)}
+.ac-flag{position:absolute;top:-10px;left:22px;font-size:.62rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:20px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy)}
+.ac-title{font-family:var(--ff-h);font-size:1.12rem;font-weight:800;color:var(--navy);line-height:1.25;margin-bottom:6px}
+.ac-tag{font-size:.86rem;color:var(--text2);line-height:1.6;margin-bottom:14px}
+.ac-meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.74rem;color:var(--text3);margin-bottom:14px}
+.ac-outs{list-style:none;margin:0 0 18px;padding:0}
+.ac-outs li{font-size:.8rem;color:var(--text2);line-height:1.5;padding:4px 0 4px 20px;position:relative}
+.ac-outs li::before{content:'✓';position:absolute;left:0;top:4px;font-weight:800;color:var(--gold)}
+.ac-foot{margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;gap:10px;flex-wrap:wrap;border-top:1px solid var(--off2);padding-top:14px}
+.ac-price{font-family:var(--ff-h);font-size:1.5rem;font-weight:800;color:var(--navy);line-height:1}
+.ac-price small{display:block;font-family:var(--ff-b);font-size:.68rem;font-weight:500;color:var(--text3);margin-top:4px}
+.ac-btns{display:flex;gap:6px}
+.ac-btn{font-family:var(--ff-b);font-size:.78rem;font-weight:700;padding:9px 13px;border-radius:8px;cursor:pointer;border:none;transition:all .15s}
+.ac-btn-ghost{background:transparent;border:1.5px solid var(--border2);color:var(--navy)}
+.ac-btn-ghost:hover{border-color:var(--navy);background:var(--off)}
+.ac-btn-main{background:var(--navy);color:var(--gold2)}
+.ac-btn-main:hover{background:var(--navy2);transform:translateY(-1px)}
+.ac-why{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.ac-why-card{background:var(--white);border:1.5px solid var(--border);border-radius:12px;padding:22px}
+.ac-why-card .ic{font-size:1.5rem;margin-bottom:10px}
+.ac-why-card h3{font-family:var(--ff-h);font-size:1rem;color:var(--navy);margin-bottom:6px}
+.ac-why-card p{font-size:.84rem;color:var(--text2);line-height:1.65}
+.ac-member{display:grid;grid-template-columns:1.3fr 1fr;gap:28px;align-items:center;background:linear-gradient(135deg,var(--navy),var(--navy3));border-radius:18px;padding:36px;color:#fff}
+.ac-member h2{font-family:var(--ff-h);font-size:clamp(1.5rem,3vw,2rem);font-weight:800;margin-bottom:10px}
+.ac-member h2 em{color:var(--gold3);font-style:normal}
+.ac-member p{font-size:.92rem;color:rgba(255,255,255,.75);line-height:1.75}
+.ac-member ul{list-style:none;padding:0;margin:0}
+.ac-member li{font-size:.86rem;color:rgba(255,255,255,.88);padding:6px 0 6px 22px;position:relative;border-bottom:1px solid rgba(255,255,255,.08)}
+.ac-member li::before{content:'✓';position:absolute;left:0;color:var(--gold2);font-weight:800}
+.ac-member-price{font-family:var(--ff-h);font-size:2.2rem;font-weight:800;color:var(--gold3);margin:14px 0 4px}
+.ac-member-price small{font-size:.9rem;color:rgba(255,255,255,.6);font-family:var(--ff-b);font-weight:500}
+/* Modal */
+.ac-overlay{display:none;position:fixed;inset:0;z-index:3000;background:rgba(11,33,64,.62);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:4vh 16px;overflow-y:auto}
+.ac-overlay.open{display:block}
+.ac-modal{background:var(--white);border-radius:16px;max-width:820px;margin:0 auto;box-shadow:0 24px 80px rgba(0,0,0,.35);overflow:hidden}
+.ac-modal-head{background:var(--navy);color:#fff;padding:26px 28px;position:relative}
+.ac-modal-head h2{font-family:var(--ff-h);font-size:1.5rem;font-weight:800;line-height:1.2;margin:8px 40px 8px 0}
+.ac-modal-head p{font-size:.9rem;color:rgba(255,255,255,.75);line-height:1.6}
+.ac-close{position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;border:none;background:rgba(255,255,255,.12);color:#fff;font-size:1.1rem;cursor:pointer}
+.ac-close:hover{background:rgba(255,255,255,.22)}
+.ac-modal-body{padding:24px 28px 28px}
+.ac-facts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:22px}
+.ac-fact{background:var(--off);border:1px solid var(--border);border-radius:10px;padding:10px 12px}
+.ac-fact b{display:block;font-family:var(--ff-m);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.ac-fact span{font-size:.84rem;font-weight:600;color:var(--navy)}
+.ac-h{font-family:var(--ff-m);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:20px 0 10px}
+.ac-p{font-size:.88rem;color:var(--text2);line-height:1.7}
+.ac-mod{border:1.5px solid var(--border);border-radius:10px;margin-bottom:8px;overflow:hidden}
+.ac-mod-h{display:flex;gap:12px;align-items:center;padding:12px 14px;background:var(--off);cursor:pointer;font-weight:700;font-size:.88rem;color:var(--navy)}
+.ac-mod-n{font-family:var(--ff-m);font-size:.66rem;color:var(--gold);flex-shrink:0;min-width:58px}
+.ac-mod-b{display:none;padding:10px 16px 14px}
+.ac-mod.open .ac-mod-b{display:block}
+.ac-mod-b li{font-size:.84rem;color:var(--text2);line-height:1.55;padding:3px 0}
+.ac-mod-hw{margin-top:8px;font-size:.8rem;background:var(--gold-lt);border-left:3px solid var(--gold);padding:8px 10px;border-radius:4px;color:var(--text)}
+.ac-case{background:var(--off);border:1.5px dashed var(--border2);border-radius:10px;padding:14px 16px;font-size:.85rem;color:var(--text2);line-height:1.65}
+.ac-modal-foot{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:24px;padding-top:18px;border-top:1px solid var(--border)}
+.ac-form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ac-form label{display:block;font-size:.74rem;font-weight:600;color:var(--text2);margin-bottom:5px}
+.ac-form input,.ac-form select,.ac-form textarea{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-family:var(--ff-b);font-size:.88rem;color:var(--text);background:var(--white)}
+.ac-form input:focus,.ac-form select:focus,.ac-form textarea:focus{outline:none;border-color:var(--gold)}
+.ac-form .full{grid-column:1/-1}
+.ac-form .bad{border-color:#dc2626;background:#fff5f5}
+.ac-teaser{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center}
+.ac-teaser-list{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ac-teaser-item{background:var(--white);border:1.5px solid var(--border);border-radius:10px;padding:12px 14px;font-size:.84rem;font-weight:600;color:var(--navy);cursor:pointer;transition:all .15s}
+.ac-teaser-item:hover{border-color:var(--gold);transform:translateY(-2px)}
+.ac-teaser-item small{display:block;font-weight:500;color:var(--text3);font-size:.72rem;margin-top:3px}
+/* Nav fit: 12 links — tighten spacing, switch to the menu button before links overflow */
+@media(max-width:1400px){.nav-links a{padding-left:7px!important;padding-right:7px!important;font-size:.79rem}}
+@media(max-width:1320px){.nav-links{display:none}.nav-menu-btn{display:block}}
+@media(max-width:1100px){.ac-grid{grid-template-columns:repeat(2,1fr)}.ac-why{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:760px){
+  .ac-grid,.ac-why,.ac-member,.ac-teaser,.ac-teaser-list{grid-template-columns:1fr}
+  .ac-facts{grid-template-columns:1fr 1fr}
+  .ac-form{grid-template-columns:1fr}
+  .ac-member{padding:26px 20px}
+  .ac-modal-head,.ac-modal-body{padding-left:18px;padding-right:18px}
+}
+</style>
 </head>
 <body>
 
@@ -558,6 +656,7 @@ footer{background:var(--navy);padding:52px 5vw 28px}
       <a onclick="showPage('formation')" id="nav-formation">Formation</a>
       <a onclick="showPage('industries')" id="nav-industries">Industries</a>
       <a onclick="showPage('portfolio')" id="nav-portfolio">Portfolio</a>
+      <a onclick="showPage('academy')" id="nav-academy">🎓 Academy</a>
       <a onclick="showPage('about')" id="nav-about">About</a>
       <a onclick="showPage('accounting')" id="nav-accounting">📊 Accounting</a>
       <a onclick="showPage('hire')" id="nav-hire" style="color:#fff;font-weight:800;background:linear-gradient(135deg,#1d4ed8,#2563eb);border-radius:8px;padding:7px 14px;border:none">🧠 Hire a Consultant</a>
@@ -577,6 +676,7 @@ footer{background:var(--navy);padding:52px 5vw 28px}
   <a onclick="showPage('industries');toggleMobileNav()">Industries</a>
   <a onclick="showPage('how');toggleMobileNav()">How It Works</a>
   <a onclick="showPage('portfolio');toggleMobileNav()">Portfolio</a>
+  <a onclick="showPage('academy');toggleMobileNav()">🎓 Academy</a>
   <a onclick="showPage('about');toggleMobileNav()">About</a>
   <a onclick="showPage('accounting');toggleMobileNav()">📊 Accounting</a>
   <a onclick="showPage('hire');toggleMobileNav()" style="color:#fff!important;font-weight:800;background:linear-gradient(135deg,#1d4ed8,#2563eb);border-radius:8px;padding:10px 14px;margin:4px 0;display:block;text-align:center">🧠 Hire a Consultant</a>
@@ -793,6 +893,19 @@ footer{background:var(--navy);padding:52px 5vw 28px}
     </div>
   </section>
 
+  <!-- ACADEMY TEASER — added 2026-10-01_1538 UTC -->
+  <section class="section">
+    <div class="container ac-teaser">
+      <div>
+        <span class="section-label">IEBC Academy</span>
+        <h2 class="section-title">Want to learn it <em>yourself?</em></h2>
+        <p class="section-sub">Practical AI and automation classes taught by the consultants who build IEBC's systems. Start with a free webinar, take a self-paced course, or train your whole team.</p>
+        <a onclick="showPage('academy')" class="btn-navy">🎓 Explore the Academy →</a>
+      </div>
+      <div class="ac-teaser-list" id="ac-teaser-list"></div>
+    </div>
+  </section>
+
   <!-- TESTIMONIALS -->
   <section class="section bg-off">
     <div class="container">
@@ -873,6 +986,108 @@ footer{background:var(--navy);padding:52px 5vw 28px}
   </section>
   <div class="cta-band"><div class="container"><h2>Want to be our next portfolio company?</h2><p>Book a free 30-minute discovery call. We'll show you exactly what we'd build for your business.</p><div class="cta-btns"><button onclick="openCheckout('growth')" class="btn-gold">🛒 Buy Now — Get Started</button><a onclick="showPage('contact');setTimeout(initContactPage,100)" class="btn-white-out">📅 Book a Free Call</a></div></div></div>
 </div><!-- /page-portfolio -->
+
+<!-- ═══ IEBC ACADEMY PAGE — added 2026-10-01_1538 UTC ═══ -->
+<div class="page" id="page-academy">
+  <section class="section bg-navy">
+    <div class="container" style="text-align:center">
+      <span class="section-label" style="color:var(--gold2)">IEBC Academy</span>
+      <h1 class="section-title" style="color:#fff">Learn to run your business <em>on AI.</em></h1>
+      <p style="font-size:1rem;color:rgba(255,255,255,.75);max-width:680px;margin:0 auto;line-height:1.8">Practical classes taught by the consultants who build IEBC's systems. You don't just learn about AI. You leave each class with something working in your business: an automation, a website, a hub, or a trained team.</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:26px">
+        <a onclick="acScrollCatalog()" class="btn-gold">🎓 Browse Classes</a>
+        <a onclick="acOpenEnroll('ai-intro')" class="btn-white-out">▶ Free Intro Webinar</a>
+      </div>
+      <div class="ac-hero-stats">
+        <div class="ac-hero-stat"><b id="ac-count">17</b><span>classes and programs</span></div>
+        <div class="ac-hero-stat"><b>5</b><span>formats: self-paced to live</span></div>
+        <div class="ac-hero-stat"><b>4</b><span>industry tracks</span></div>
+        <div class="ac-hero-stat"><b>100%</b><span>course credit toward a build</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-off" id="ac-catalog">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:26px">
+        <span class="section-label">Course Catalog</span>
+        <h2 class="section-title">Pick how you <em>want to learn.</em></h2>
+        <p class="section-sub" style="margin:0 auto">Start free, take one self-paced course, join a live cohort, or bring IEBC in to train your whole team.</p>
+      </div>
+      <div class="ac-tabs" id="ac-tabs"></div>
+      <div class="ac-grid" id="ac-grid"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:30px">
+        <span class="section-label">Why IEBC Academy</span>
+        <h2 class="section-title">Taught by people who <em>build it.</em></h2>
+      </div>
+      <div class="ac-why">
+        <div class="ac-why-card"><div class="ic">🏗️</div><h3>Real systems, not theory</h3><p>Lessons come from systems running at our portfolio companies: a trucking carrier, an art studio and a nonprofit.</p></div>
+        <div class="ac-why-card"><div class="ic">🧰</div><h3>You leave with something built</h3><p>Every class ends with a working deliverable: an automation, a template, a website or a hub you can use the next day.</p></div>
+        <div class="ac-why-card"><div class="ic">🎯</div><h3>Built for your industry</h3><p>Industry tracks for trucking, the trades, creatives and nonprofits use the tools and problems you actually deal with.</p></div>
+        <div class="ac-why-card"><div class="ic">🔁</div><h3>Learn it, or have us do it</h3><p>Decide you'd rather have IEBC build it? Your course fee is credited toward any IEBC build within 90 days.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-off">
+    <div class="container">
+      <div class="ac-member">
+        <div>
+          <span class="section-label" style="color:var(--gold2)">Academy Membership</span>
+          <h2>Keep learning <em>every month.</em></h2>
+          <p>AI tools change fast. Membership keeps you current with new lessons, ready-to-use templates and a live Q&amp;A with IEBC consultants every month.</p>
+          <div class="ac-member-price">$39<small> /month · cancel anytime</small></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+            <button class="btn-gold" onclick="acOpenEnroll('membership')">🎓 Join the Academy</button>
+          </div>
+        </div>
+        <ul>
+          <li>All self-paced courses included while you're a member</li>
+          <li>New lesson every month on the latest AI tools</li>
+          <li>Monthly live Q&amp;A and office hours</li>
+          <li>Prompt library and automation templates</li>
+          <li>Member community for owners and operators</li>
+          <li>20% off live cohorts and certification</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:820px">
+      <div style="text-align:center;margin-bottom:24px">
+        <span class="section-label">FAQ</span>
+        <h2 class="section-title">Questions about <em>the Academy</em></h2>
+      </div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Do I need to be technical? <span class="faq-icon">+</span></button><div class="faq-a"><p>No. Most classes are built for business owners and staff who have never automated anything. Each class lists its level. The Certification and AI Workforce programs expect some hands-on comfort with software.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How does enrollment work? <span class="faq-icon">+</span></button><div class="faq-a"><p>Pick a class and reserve your seat. An IEBC consultant confirms your spot by email within one business day and sends a secure payment link, your start date and access details.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How does the course credit work? <span class="faq-icon">+</span></button><div class="faq-a"><p>If you buy an IEBC website, hub or bundle within 90 days of finishing a paid class, the full course fee is credited toward the build price. Just tell your consultant which class you took.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Can you train my whole team? <span class="faq-icon">+</span></button><div class="faq-a"><p>Yes. The "For Teams" programs are delivered live (on site or on video) and are tailored to your company's tools, departments and policies. Book a free call and we'll scope it with you.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What tools do the classes use? <span class="faq-icon">+</span></button><div class="faq-a"><p>Mainstream AI assistants (such as ChatGPT, Claude and Gemini), common no-code automation tools, and IEBC's own platforms such as Efficient for accounting. Free tiers are enough for most self-paced classes.</p></div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Can grants or workforce programs pay for training? <span class="faq-icon">+</span></button><div class="faq-a"><p>Often, yes. Nonprofits, workforce boards and community programs can sponsor seats or full cohorts. Contact us and we'll help with the paperwork.</p></div></div>
+    </div>
+  </section>
+
+  <div class="cta-band"><div class="container"><h2>Not sure where to start?</h2><p>Join the free 60-minute intro webinar, or book a free call and we'll recommend the right class for you or your team.</p><div class="cta-btns"><button onclick="acOpenEnroll('ai-intro')" class="btn-gold">▶ Save My Free Seat</button><a onclick="showPage('contact');setTimeout(initContactPage,100)" class="btn-white-out">📅 Book a Free Call</a></div></div></div>
+</div><!-- /page-academy -->
+
+<!-- Academy course detail / enrollment modal -->
+<div class="ac-overlay" id="ac-overlay" onclick="if(event.target===this)acClose()">
+  <div class="ac-modal" role="dialog" aria-modal="true" aria-labelledby="ac-m-title">
+    <div class="ac-modal-head">
+      <button class="ac-close" onclick="acClose()" aria-label="Close">✕</button>
+      <span class="ac-fmt" id="ac-m-fmt" style="background:rgba(255,255,255,.12);color:var(--gold3)"></span>
+      <h2 id="ac-m-title"></h2>
+      <p id="ac-m-tag"></p>
+    </div>
+    <div class="ac-modal-body" id="ac-m-body"></div>
+  </div>
+</div>
 
 <!-- ══ PAGE: SERVICES ══ -->
 <div class="page" id="page-services">
@@ -6090,6 +6305,442 @@ window.addEventListener('message', function(e) {
     window.open(_acctSuiteFile, '_blank');
   }
 });
+</script>
+
+<!-- ═══ IEBC ACADEMY SCRIPT — added 2026-10-01_1538 UTC ═══ -->
+<script>
+// ── IEBC ACADEMY: course catalog, detail modal and enrollment ─────────
+// Each course: cat (tab), price (number, 0 = free, null = quoted), modules[{t,l[],hw}].
+const AC_CATS = [
+  {id:'all',      label:'All Classes'},
+  {id:'free',     label:'Free'},
+  {id:'self',     label:'Self-Paced'},
+  {id:'industry', label:'Industry Tracks'},
+  {id:'cohort',   label:'Live Cohorts'},
+  {id:'teams',    label:'For Teams'},
+  {id:'cert',     label:'Certification'},
+];
+const AC_FMT = {free:'Free · Live Webinar', self:'Self-Paced', industry:'Industry Track', cohort:'Live Cohort', teams:'For Teams', cert:'Certification'};
+
+const ACADEMY_COURSES = [
+  // ── FREE ──
+  { id:'ai-intro', cat:'free', icon:'▶️', flag:'Start Here',
+    title:'AI for Small Business Owners in 60 Minutes',
+    tag:'A free live webinar: what AI can really do for a small business today, and the first five tasks to hand off.',
+    duration:'60 minutes', level:'Beginner', delivery:'Live on Zoom + replay', price:0, priceNote:'Free',
+    who:'Owners and managers who keep hearing about AI and want a plain-English starting point.',
+    outcomes:['Know where AI saves time in your business','Leave with 5 tasks to automate this week','Get the IEBC starter prompt pack'],
+    modules:[
+      {t:'What AI is (and isn\'t) for a small business', l:['AI assistants vs. automation vs. AI agents','Where AI is reliable today, and where it still needs a human','What it costs to get started']},
+      {t:'Live demos', l:['Writing a customer follow-up in 30 seconds','Turning a receipt photo into a bookkeeping entry','Drafting a week of social posts from one idea']},
+      {t:'Your first five automations', l:['The "time audit": finding the tasks that eat your week','Picking quick wins','Q&A with an IEBC consultant']},
+    ],
+    build:'Your personal "first five" automation list and the IEBC starter prompt pack.' },
+
+  // ── SELF-PACED ──
+  { id:'admin-auto', cat:'self', icon:'⚙️', flag:'Most Popular',
+    title:'AI Admin Automation: Get Your Week Back',
+    tag:'Automate follow-ups, quotes, invoices, scheduling and reminders using AI assistants and no-code tools.',
+    duration:'6 modules · about 5 hours', level:'Beginner', delivery:'Video lessons + templates', price:197, priceNote:'one-time',
+    who:'Owners and office staff buried in email, scheduling and paperwork.',
+    outcomes:['Map where your hours actually go','Build 3 working automations','Write reusable AI prompts for daily admin'],
+    modules:[
+      {t:'The time audit', l:['Track a week of tasks','Score each task: frequency × time × frustration','Choose your top 3 automation targets'], hw:'Complete the IEBC Time Audit worksheet.'},
+      {t:'AI assistants for daily admin', l:['Prompting basics: role, context, task, format','Email replies, quotes and proposals','Building your personal prompt library'], hw:'Write 5 prompts for your most common messages.'},
+      {t:'No-code automation basics', l:['Triggers, actions and connections','Form → spreadsheet → email workflows','Testing and fixing automations safely']},
+      {t:'Follow-ups and reminders on autopilot', l:['Lead follow-up sequences','Appointment reminders and no-show recovery','Review requests after a job'], hw:'Build an automated follow-up for new inquiries.'},
+      {t:'Invoices and getting paid', l:['Invoice templates and recurring invoices','Overdue payment reminders','Connecting payments to your books']},
+      {t:'Keep it running', l:['Weekly check-in routine','When to add a human review step','Measuring hours saved'], hw:'Record your before/after hours for the 3 automations.'},
+    ],
+    build:'Three live automations (lead follow-up, appointment reminders, invoice reminders) plus a prompt library for your business.' },
+
+  { id:'ai-books', cat:'self', icon:'📊',
+    title:'AI Bookkeeping: Receipts to Tax Export',
+    tag:'Set up clean books with AI receipt scanning, mileage tracking, 1099 tracking and one-click tax exports.',
+    duration:'5 modules · about 3.5 hours', level:'Beginner', delivery:'Video lessons + Efficient walkthroughs', price:149, priceNote:'one-time',
+    who:'Owners, sole proprietors and 1099 contractors who dread tax season.',
+    outcomes:['Set up categories that match your tax forms','Scan and file receipts in seconds','Export a clean year to QuickBooks or Schedule C'],
+    modules:[
+      {t:'Bookkeeping basics for owners', l:['Income, expenses and categories that matter','Business vs. personal: keeping them apart','What your accountant needs from you']},
+      {t:'AI receipt and invoice scanning', l:['Snap, read, categorize: the workflow','Fixing AI mistakes quickly','Building the weekly 10-minute habit'], hw:'Scan and categorize one month of receipts.'},
+      {t:'Mileage, recurring expenses and budgets', l:['GPS mileage logs for IRS deductions','Recurring expenses and budget vs. actual']},
+      {t:'Contractors and 1099s', l:['Tracking contractor payments','Who needs a 1099 and when']},
+      {t:'Tax time in one click', l:['Quarterly tax estimates','Exporting to QuickBooks or Schedule C','Year-end checklist'], hw:'Produce a tax-ready export for the current quarter.'},
+    ],
+    build:'A working bookkeeping system in Efficient (or your current tool) with a tax-ready quarterly export.',
+    note:'This class teaches bookkeeping workflow, not tax advice. Talk to a licensed tax professional about your specific situation.' },
+
+  { id:'start-right', cat:'self', icon:'🏢',
+    title:'Start It Right: Formation, EIN, Books and Your First Website',
+    tag:'Everything a new business owner needs in the first 30 days, in the right order.',
+    duration:'5 modules · about 3 hours', level:'Beginner', delivery:'Video lessons + checklists', price:149, priceNote:'one-time',
+    who:'New and soon-to-be business owners, side hustlers going official.',
+    outcomes:['Choose the right entity for your situation','Set up banking and books on day one','Launch a simple, professional web presence'],
+    modules:[
+      {t:'Choosing your entity', l:['LLC, S-Corp, C-Corp, nonprofit and DBA compared','State filing basics and registered agents']},
+      {t:'EIN, bank account and operating agreement', l:['Getting an EIN','Separating business and personal money','What goes in an operating agreement']},
+      {t:'Books from day one', l:['Picking a bookkeeping tool','Setting up categories','Saving receipts automatically']},
+      {t:'Your first website with AI', l:['One-page site in an afternoon','Booking and contact forms','Getting found on Google']},
+      {t:'Your 30-day launch plan', l:['Licenses and permits checklist','Insurance basics','First-customer plan'], hw:'Complete your 30-day launch checklist.'},
+    ],
+    build:'A completed 30-day launch checklist and a live one-page website.',
+    note:'IEBC is a filing service, not a law firm. This class is educational and is not legal or tax advice.' },
+
+  { id:'ai-website', cat:'self', icon:'🌐',
+    title:'Build a Website That Sells, with AI',
+    tag:'Use AI to write, design and launch a mobile-friendly site that books appointments and captures leads.',
+    duration:'6 modules · about 5 hours', level:'Beginner', delivery:'Video lessons + page templates', price:197, priceNote:'one-time',
+    who:'Owners who need a better website but not a big agency bill.',
+    outcomes:['Write clear website copy with AI','Add booking, payments and lead capture','Launch on your own domain'],
+    modules:[
+      {t:'Plan a site that converts', l:['The 5 pages every service business needs','Your offer, your customer, your call to action']},
+      {t:'Writing copy with AI', l:['Prompts for headlines, services and FAQs','Making AI copy sound like you'], hw:'Draft your home and services pages.'},
+      {t:'Design and images', l:['Choosing a builder','Brand colors and fonts','AI images: what\'s fine and what to avoid']},
+      {t:'Booking, payments and lead capture', l:['Online booking','Taking payments and deposits','Sending leads to your inbox or CRM']},
+      {t:'Getting found', l:['Google Business Profile','Local SEO basics','Reviews']},
+      {t:'Launch and improve', l:['Domain and launch checklist','Reading your visitor numbers'], hw:'Launch your site and submit it for an IEBC review.'},
+    ],
+    build:'A live website with booking or payments and lead capture.' },
+
+  { id:'ai-marketing', cat:'self', icon:'📣',
+    title:'AI Marketing and Social Content Engine',
+    tag:'Turn one idea into a month of posts, emails and promotions, and schedule it all in an afternoon.',
+    duration:'5 modules · about 4 hours', level:'Beginner', delivery:'Video lessons + content calendar', price:197, priceNote:'one-time',
+    who:'Owners and marketers who never have time to post.',
+    outcomes:['Build a 30-day content calendar with AI','Create a newsletter people open','Schedule a month of posts in one sitting'],
+    modules:[
+      {t:'Your brand voice in a prompt', l:['Capture your voice in a style guide AI can follow','Content pillars for your business']},
+      {t:'One idea, ten pieces of content', l:['Posts, reels scripts, emails and blog outlines','Repurposing what already works'], hw:'Turn one customer story into 10 content pieces.'},
+      {t:'Email and newsletters', l:['Growing a list from your website','A monthly newsletter in 30 minutes']},
+      {t:'Scheduling and automation', l:['Batch creation and scheduling tools','Auto-posting new products or jobs']},
+      {t:'Measure and improve', l:['What numbers matter','Monthly review routine'], hw:'Schedule your next 30 days of content.'},
+    ],
+    build:'A scheduled 30-day content calendar and a newsletter template.' },
+
+  // ── INDUSTRY TRACKS ──
+  { id:'ai-trucking', cat:'industry', icon:'🚚',
+    title:'AI for Trucking and Logistics',
+    tag:'Use AI for dispatch, driver onboarding, safety, documents and weekly settlements.',
+    duration:'6 modules · about 6 hours', level:'Intermediate', delivery:'Video lessons + live Q&A', price:399, priceNote:'one-time',
+    who:'Carriers, owner-operators, dispatchers and small fleets.',
+    outcomes:['Automate driver onboarding and document collection','Speed up dispatch and load tracking','Run weekly settlements with fewer errors'],
+    modules:[
+      {t:'Where AI fits in a trucking operation', l:['Back office time sinks','Tools that work for small fleets']},
+      {t:'Dispatch and load tracking', l:['Organizing loads, rate confirmations and BOLs','Revenue per mile and lane reporting']},
+      {t:'Driver onboarding and documents', l:['Digital applications and e-signatures','Document vault: BOL, POD, rate confirmations'], hw:'Build a digital driver onboarding checklist.'},
+      {t:'Safety and compliance support', l:['HOS and document expiry reminders','Using AI to flag missing paperwork']},
+      {t:'Settlements and back office', l:['Weekly driver settlements','IFTA and fuel logs by state','Factoring paperwork']},
+      {t:'AI agents for fleets', l:['What an AI agent is','Designing an onboarding or settlement agent with human sign-off'], hw:'Map one back-office process for an AI agent.'},
+    ],
+    build:'A driver onboarding workflow, document checklist and settlement process for your fleet.',
+    caseStudy:'Built from the systems IEBC runs at 3 Lakes Logistics: the EagleEye Command Center, the Hawk driver app, and AI agents for onboarding, safety (Shield) and settlements (Settler).' },
+
+  { id:'ai-trades', cat:'industry', icon:'🔨',
+    title:'AI for Contractors and the Trades',
+    tag:'Estimates, job tracking, invoices and 1099 records for plumbers, electricians, HVAC and builders.',
+    duration:'5 modules · about 4 hours', level:'Beginner', delivery:'Video lessons + templates', price:299, priceNote:'one-time',
+    who:'Independent contractors, small crews and trade business owners.',
+    outcomes:['Write estimates in minutes with AI','Track jobs with photos from your phone','Get paid faster with automatic invoices'],
+    modules:[
+      {t:'Estimates and proposals with AI', l:['Estimate templates','Turning job notes into a professional PDF'], hw:'Create your estimate template.'},
+      {t:'Jobs from your phone', l:['Project tracker with photo documentation','Materials and supply cost log']},
+      {t:'Booking and customer follow-up', l:['Online booking','Automatic reminders and review requests']},
+      {t:'Invoices and payments', l:['Invoice on job completion','Payment reminders']},
+      {t:'Taxes and 1099 records', l:['Expense tracking for tradespeople','1099 records for subs'], hw:'Set up your job-to-invoice workflow.'},
+    ],
+    build:'An estimate template, job tracker and job-to-invoice workflow.' },
+
+  { id:'ai-creatives', cat:'industry', icon:'🎨',
+    title:'AI for Creatives and Makers',
+    tag:'Sell your work online, manage commissions and keep your marketing running while you create.',
+    duration:'5 modules · about 4 hours', level:'Beginner', delivery:'Video lessons + templates', price:299, priceNote:'one-time',
+    who:'Artists, photographers, designers, makers and instructors.',
+    outcomes:['Set up an online storefront and commissions','Track inventory and income by project','Automate your newsletter and social posts'],
+    modules:[
+      {t:'Your online storefront', l:['Gallery, series and product pages','Buy Now checkout and deposits for commissions']},
+      {t:'Commissions from inquiry to delivery', l:['Intake forms','Deposits, timelines and approvals'], hw:'Build your commission intake form.'},
+      {t:'Inventory and income', l:['Artwork inventory with photos','Income by project type']},
+      {t:'Classes, rentals and bookings', l:['Selling classes and workshops','Rental bookings and deposits']},
+      {t:'Marketing on autopilot', l:['Studio newsletter','Social posts from new pieces'], hw:'Launch your first newsletter.'},
+    ],
+    build:'A storefront plan, commission workflow and newsletter.',
+    caseStudy:'Built from what IEBC created for Ceces Pieces: an online storefront, commission deposits, art rental and class sign-up, and a business hub for inventory and marketing.' },
+
+  { id:'ai-nonprofit', cat:'industry', icon:'❤️',
+    title:'AI for Nonprofits',
+    tag:'Fundraising, donor management, volunteers, grants and impact reporting with a small team.',
+    duration:'5 modules · about 4.5 hours', level:'Beginner', delivery:'Video lessons + templates', price:299, priceNote:'one-time · nonprofit pricing',
+    who:'Executive directors, staff and board members of small nonprofits.',
+    outcomes:['Draft grant sections faster with AI','Organize donors and volunteers in one place','Report impact donors can see'],
+    modules:[
+      {t:'Donors and supporters', l:['Donor CRM basics','Thank-you and receipt automation']},
+      {t:'Fundraising campaigns', l:['Online giving pages','Raffles and events: tools and compliance basics']},
+      {t:'Grant writing with AI', l:['Research and fit','Drafting needs statements and budgets','Keeping it accurate and in your voice'], hw:'Draft one grant section with AI and edit it.'},
+      {t:'Volunteers and programs', l:['Volunteer sign-up and scheduling','Program enrollment']},
+      {t:'Impact reporting', l:['Live impact trackers','Board reports in minutes'], hw:'Build a one-page impact dashboard.'},
+    ],
+    build:'A donor and volunteer workflow, a grant draft and an impact dashboard.',
+    caseStudy:'Built from the systems IEBC runs for Jacks of All Trades Community Development in Detroit: a 50/50 raffle hub, live impact tracker, trades-training enrollment and a Command Center.' },
+
+  // ── LIVE COHORTS ──
+  { id:'cohort-automation', cat:'cohort', icon:'👥', flag:'Next Cohort',
+    title:'AI Automation for Small Business Owners: 4-Week Live Cohort',
+    tag:'Four live weekly sessions with an IEBC consultant. You build your automations during class, not after.',
+    duration:'4 weeks · 90-min weekly session', level:'Beginner', delivery:'Live on Zoom + recordings', price:297, priceNote:'per seat · max 20 seats',
+    who:'Owners who learn best live and want accountability.',
+    outcomes:['Build 4 automations in 4 weeks','Get feedback on your setup','Join a group of owners solving the same problems'],
+    modules:[
+      {t:'Week 1: Time audit and AI basics', l:['Find your biggest time sinks','Prompting workshop'], hw:'Complete your time audit.'},
+      {t:'Week 2: Leads and follow-up', l:['Build a lead capture → follow-up automation live']},
+      {t:'Week 3: Scheduling, invoices and payments', l:['Booking, reminders and invoice automation']},
+      {t:'Week 4: Content and reporting', l:['A month of marketing in one session','A weekly numbers report','Demo day: share what you built']},
+    ],
+    build:'Four working automations and a 90-day plan for what to automate next.' },
+
+  { id:'cohort-hub', cat:'cohort', icon:'🧭',
+    title:'Build Your Business Hub in 6 Weeks',
+    tag:'Follow IEBC\'s own 6-week delivery framework to build your CRM, invoicing and reporting hub with coaching.',
+    duration:'6 weeks · weekly session + office hours', level:'Intermediate', delivery:'Live on Zoom + recordings', price:1200, priceNote:'per seat · max 12 seats',
+    who:'Owners and operations leads ready to put their whole business in one system.',
+    outcomes:['Design your hub before you build','Build CRM, invoicing and reporting','Launch with your team trained'],
+    modules:[
+      {t:'Week 1: Discovery', l:['Map every workflow and pain point','Write your scope']},
+      {t:'Week 2: Architecture', l:['Design data, modules and permissions','Choose tools']},
+      {t:'Weeks 3–4: Build', l:['CRM and pipeline','Invoicing and payments','Automations between them'], hw:'Build your core modules with weekly review.'},
+      {t:'Week 5: Testing', l:['Test with real data','Fix and polish']},
+      {t:'Week 6: Launch and training', l:['Go live','Train your team','Set your 52-week roadmap']},
+    ],
+    build:'A live business hub (CRM, invoicing, reporting) with your team trained on it.' },
+
+  { id:'cohort-agents', cat:'cohort', icon:'🤖',
+    title:'Build Your AI Workforce: AI Agents for Operations',
+    tag:'Design, build and safely run AI agents that handle onboarding, follow-ups, reporting and back-office work.',
+    duration:'6 weeks · weekly session + labs', level:'Advanced', delivery:'Live on Zoom + build labs', price:1500, priceNote:'per seat · max 12 seats',
+    who:'Operators and tech-comfortable owners ready to go beyond simple automations.',
+    outcomes:['Know when an agent beats a simple automation','Build an agent with human approval steps','Monitor cost, accuracy and risk'],
+    modules:[
+      {t:'Week 1: Agents vs. automations', l:['What an AI agent is','Picking the right first process']},
+      {t:'Week 2: Designing the job', l:['Inputs, tools, rules and hand-offs','Writing the agent\'s instructions'], hw:'Write a job description for your first agent.'},
+      {t:'Week 3: Building with tools', l:['Connecting AI to your data and apps','Approval steps and guardrails']},
+      {t:'Week 4: Testing and safety', l:['Test cases and failure modes','Privacy, security and data handling']},
+      {t:'Week 5: Running in production', l:['Monitoring, logging and costs','Escalation to a human']},
+      {t:'Week 6: Your AI workforce plan', l:['Demo day','Roadmap for your next agents']},
+    ],
+    build:'One working AI agent with human sign-off steps, and a plan for the next ones.',
+    caseStudy:'Patterns come from the AI agents IEBC built for 3 Lakes Logistics for onboarding, safety (Shield) and weekly settlements (Settler).' },
+
+  // ── FOR TEAMS ──
+  { id:'team-workshop', cat:'teams', icon:'🏢',
+    title:'AI Readiness Workshop for Teams',
+    tag:'A half-day workshop that gets your whole team using AI safely and finds your best automation opportunities.',
+    duration:'Half day (4 hours)', level:'All levels', delivery:'On site or live video', price:2500, priceNote:'up to 25 people',
+    who:'Companies that want staff using AI productively, with guardrails.',
+    outcomes:['Every attendee using AI for real work','A ranked list of automation opportunities','Clear dos and don\'ts for company data'],
+    modules:[
+      {t:'AI basics for your team', l:['What AI is good and bad at','Hands-on prompting with your own tasks']},
+      {t:'Safe use', l:['What data never goes into AI tools','Checking AI output before it goes out']},
+      {t:'Opportunity mapping', l:['Department-by-department time audit','Rank by impact and effort']},
+      {t:'Action plan', l:['Top 5 quick wins','Owner and timeline for each']},
+    ],
+    build:'A written AI opportunity report and action plan for your company.' },
+
+  { id:'team-bootcamp', cat:'teams', icon:'🚀',
+    title:'AI at Work: Department Bootcamp',
+    tag:'Hands-on training tailored to each department (sales, finance, operations, HR or customer service) using your own tools.',
+    duration:'4–6 weeks · weekly sessions', level:'All levels', delivery:'On site or live video', price:7500, priceNote:'starting at · per department',
+    who:'Companies rolling AI out department by department.',
+    outcomes:['Department-specific prompt libraries','Automations built on your real workflows','Before/after time measurement'],
+    modules:[
+      {t:'Discovery', l:['Interview department leads','Pick target workflows']},
+      {t:'Skills sessions', l:['Prompting for the department\'s real work','Templates and shared libraries']},
+      {t:'Build sessions', l:['Build 2–4 automations with the team']},
+      {t:'Measure and hand off', l:['Time-saved report','Train internal champions']},
+    ],
+    build:'Working automations, prompt libraries and trained internal champions in each department.' },
+
+  { id:'team-policy', cat:'teams', icon:'🛡️',
+    title:'Responsible AI Policy and Safe-Use Training',
+    tag:'Write your company AI policy and train staff on privacy, accuracy and customer data.',
+    duration:'2 sessions · 2 hours each', level:'All levels', delivery:'Live video', price:1500, priceNote:'per company',
+    who:'Companies whose staff already use AI tools without clear rules.',
+    outcomes:['A written AI use policy','Approved-tools list','Staff trained and signed off'],
+    modules:[
+      {t:'Policy workshop', l:['Approved tools and uses','Data your team must never share','Review and sign-off rules']},
+      {t:'Staff training', l:['Real examples of AI mistakes','Customer privacy','Quiz and acknowledgement']},
+    ],
+    build:'A ready-to-adopt AI use policy and a trained team.',
+    note:'IEBC provides a practical policy template and training. Have your attorney review any policy before adopting it.' },
+
+  // ── CERTIFICATION ──
+  { id:'cert-iec', cat:'cert', icon:'🏅', flag:'Career Path',
+    title:'IEBC Certified Integrated Efficiency Consultant',
+    tag:'Learn the IEBC method for mapping, automating and supporting small businesses, then get certified to consult.',
+    duration:'8 weeks · live sessions + capstone', level:'Advanced', delivery:'Live on Zoom + capstone project', price:1997, priceNote:'one-time · includes exam',
+    who:'Consultants, freelancers, bookkeepers and operators who want to deliver AI and automation for clients.',
+    outcomes:['Run a discovery and write a scope','Design and deliver an automation project','Earn the IEBC certification'],
+    modules:[
+      {t:'Weeks 1–2: The IEBC method', l:['Discovery calls and workflow mapping','Writing scopes clients approve']},
+      {t:'Weeks 3–4: Building', l:['Websites, hubs and automations','AI assistants and agents in client work']},
+      {t:'Week 5: Finance and operations', l:['Bookkeeping automation','Reporting clients actually read']},
+      {t:'Week 6: Delivering and supporting', l:['The 6-week delivery framework','Training clients and monthly support']},
+      {t:'Weeks 7–8: Capstone', l:['Complete a real or sample client project','Present to an IEBC panel'], hw:'Capstone project and certification exam.'},
+    ],
+    build:'A complete capstone project and the IEBC certification. Graduates can apply to join the IEBC consultant network.' },
+];
+
+let acCurrentCat = 'all';
+function acEsc(s){ return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function acPrice(c){ return c.price===0 ? 'Free' : '$'+Number(c.price).toLocaleString('en-US'); }
+function acFind(id){ return ACADEMY_COURSES.find(c=>c.id===id); }
+
+function acRenderTabs(){
+  const el=document.getElementById('ac-tabs'); if(!el) return;
+  el.innerHTML = AC_CATS.map(t=>{
+    const n = t.id==='all' ? ACADEMY_COURSES.length : ACADEMY_COURSES.filter(c=>c.cat===t.id).length;
+    return `<button class="ac-tab${t.id===acCurrentCat?' active':''}" onclick="acFilter('${t.id}')">${acEsc(t.label)} (${n})</button>`;
+  }).join('');
+}
+
+function acRenderGrid(){
+  const el=document.getElementById('ac-grid'); if(!el) return;
+  const list = ACADEMY_COURSES.filter(c=>acCurrentCat==='all'||c.cat===acCurrentCat);
+  el.innerHTML = list.map(c=>`
+    <div class="ac-card">
+      ${c.flag?`<span class="ac-flag">${acEsc(c.flag)}</span>`:''}
+      <div class="ac-card-top"><div class="ac-icon">${c.icon}</div><span class="ac-fmt">${acEsc(AC_FMT[c.cat])}</span></div>
+      <div class="ac-title">${acEsc(c.title)}</div>
+      <div class="ac-tag">${acEsc(c.tag)}</div>
+      <div class="ac-meta"><span>⏱ ${acEsc(c.duration)}</span><span>📶 ${acEsc(c.level)}</span></div>
+      <ul class="ac-outs">${c.outcomes.map(o=>`<li>${acEsc(o)}</li>`).join('')}</ul>
+      <div class="ac-foot">
+        <div class="ac-price">${acPrice(c)}<small>${acEsc(c.priceNote)}</small></div>
+        <div class="ac-btns">
+          <button class="ac-btn ac-btn-ghost" onclick="acOpenCourse('${c.id}')">Syllabus</button>
+          <button class="ac-btn ac-btn-main" onclick="acOpenEnroll('${c.id}')">${c.price===0?'Save Seat':c.cat==='teams'?'Request':'Enroll'}</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function acFilter(cat){ acCurrentCat=cat; acRenderTabs(); acRenderGrid(); }
+function acScrollCatalog(){ const s=document.getElementById('ac-catalog'); if(s) s.scrollIntoView({behavior:'smooth'}); }
+
+function acShowModal(fmt,title,tag,body){
+  document.getElementById('ac-m-fmt').textContent=fmt;
+  document.getElementById('ac-m-title').textContent=title;
+  document.getElementById('ac-m-tag').textContent=tag;
+  document.getElementById('ac-m-body').innerHTML=body;
+  document.getElementById('ac-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function acClose(){
+  const o=document.getElementById('ac-overlay'); if(o) o.classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') acClose(); });
+
+function acOpenCourse(id){
+  const c=acFind(id); if(!c) return;
+  const mods = c.modules.map((m,i)=>`
+    <div class="ac-mod${i===0?' open':''}">
+      <div class="ac-mod-h" onclick="this.parentNode.classList.toggle('open')"><span class="ac-mod-n">${c.cat==='cohort'||c.cat==='cert'?'SESSION':'MODULE'} ${i+1}</span><span>${acEsc(m.t)}</span></div>
+      <div class="ac-mod-b"><ul style="padding-left:18px;margin:0">${m.l.map(l=>`<li>${acEsc(l)}</li>`).join('')}</ul>${m.hw?`<div class="ac-mod-hw"><strong>Assignment:</strong> ${acEsc(m.hw)}</div>`:''}</div>
+    </div>`).join('');
+  const body = `
+    <div class="ac-facts">
+      <div class="ac-fact"><b>Price</b><span>${acPrice(c)}</span></div>
+      <div class="ac-fact"><b>Length</b><span>${acEsc(c.duration)}</span></div>
+      <div class="ac-fact"><b>Level</b><span>${acEsc(c.level)}</span></div>
+      <div class="ac-fact"><b>Format</b><span>${acEsc(c.delivery)}</span></div>
+    </div>
+    <div class="ac-h">Who it's for</div><p class="ac-p">${acEsc(c.who)}</p>
+    <div class="ac-h">What you'll be able to do</div>
+    <ul class="ac-outs" style="margin-bottom:0">${c.outcomes.map(o=>`<li>${acEsc(o)}</li>`).join('')}</ul>
+    <div class="ac-h">Syllabus</div>${mods}
+    <div class="ac-h">What you leave with</div><p class="ac-p">${acEsc(c.build)}</p>
+    ${c.caseStudy?`<div class="ac-h">Real-world case study</div><div class="ac-case">🏗️ ${acEsc(c.caseStudy)}</div>`:''}
+    ${c.note?`<p class="ac-p" style="font-size:.76rem;color:var(--text3);margin-top:14px">${acEsc(c.note)}</p>`:''}
+    <div class="ac-modal-foot">
+      <div class="ac-price">${acPrice(c)}<small>${acEsc(c.priceNote)}${c.price>0&&c.cat!=='teams'?' · credited toward any IEBC build within 90 days':''}</small></div>
+      <button class="btn-gold" onclick="acOpenEnroll('${c.id}')">${c.price===0?'▶ Save My Free Seat':c.cat==='teams'?'📅 Request This Training':'🎓 Reserve My Seat'}</button>
+    </div>`;
+  acShowModal(AC_FMT[c.cat], c.title, c.tag, body);
+}
+
+function acOpenEnroll(id){
+  const isMember = id==='membership';
+  const c = isMember ? {id:'membership',cat:'self',title:'IEBC Academy Membership',price:39,priceNote:'per month'} : acFind(id);
+  if(!c) return;
+  const isTeam = c.cat==='teams';
+  const opts = ACADEMY_COURSES.map(x=>`<option value="${x.id}"${x.id===c.id?' selected':''}>${acEsc(x.title)} (${acPrice(x)})</option>`).join('')
+    + `<option value="membership"${isMember?' selected':''}>IEBC Academy Membership ($39/mo)</option>`;
+  const body = `
+    <form class="ac-form" id="ac-enroll-form" onsubmit="event.preventDefault();acSubmitEnroll()">
+      <div class="full"><label for="ac-f-course">Class</label><select id="ac-f-course">${opts}</select></div>
+      <div><label for="ac-f-name">Full name *</label><input id="ac-f-name" autocomplete="name"></div>
+      <div><label for="ac-f-email">Email *</label><input id="ac-f-email" type="email" autocomplete="email"></div>
+      <div><label for="ac-f-phone">Phone</label><input id="ac-f-phone" type="tel" autocomplete="tel"></div>
+      <div><label for="ac-f-biz">Business or organization</label><input id="ac-f-biz" autocomplete="organization"></div>
+      <div><label for="ac-f-type">Enrolling as</label><select id="ac-f-type"><option value="individual"${isTeam?'':' selected'}>Myself</option><option value="team"${isTeam?' selected':''}>My team or company</option><option value="sponsor">A sponsor (nonprofit, grant or workforce program)</option></select></div>
+      <div><label for="ac-f-seats">Number of seats</label><input id="ac-f-seats" type="number" min="1" value="1"></div>
+      <div class="full"><label for="ac-f-notes">What do you most want to get out of this class?</label><textarea id="ac-f-notes" rows="3"></textarea></div>
+      <div class="full" style="font-size:.76rem;color:var(--text3);line-height:1.6">No payment is taken now. An IEBC consultant will confirm your seat by email within one business day with a secure payment link, your start date and access details.</div>
+      <div class="full"><button type="submit" class="btn-gold" style="width:100%;justify-content:center">${c.price===0?'▶ Save My Free Seat':isTeam?'📅 Request This Training':'🎓 Reserve My Seat'}</button></div>
+    </form>`;
+  acShowModal(isMember?'Membership':AC_FMT[c.cat], isTeam?'Request: '+c.title:'Enroll: '+c.title, 'Tell us a little about you and we\'ll hold your spot.', body);
+}
+
+function acSubmitEnroll(){
+  const val=id=>(document.getElementById(id)?.value||'').trim();
+  let ok=true;
+  ['ac-f-name','ac-f-email'].forEach(id=>{
+    const el=document.getElementById(id);
+    const bad = !el.value.trim() || (id==='ac-f-email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim()));
+    el.classList.toggle('bad',bad); if(bad) ok=false;
+  });
+  if(!ok) return;
+  const cid=val('ac-f-course');
+  const c = cid==='membership' ? {id:'membership',cat:'self',title:'IEBC Academy Membership',price:39} : acFind(cid);
+  const seats=Math.max(1,parseInt(val('ac-f-seats'),10)||1);
+  const name=val('ac-f-name'), email=val('ac-f-email'), type=val('ac-f-type');
+  const est = c.cat==='teams' ? c.price : c.price*seats;
+  const rec = {
+    id:'academy-'+Date.now(), submitted_at:new Date().toISOString(),
+    name, contact:name, business:val('ac-f-biz')||name, email, phone:val('ac-f-phone'),
+    industry:'Academy', course_id:c.id, course:c.title, enroll_type:type, seats,
+    stage:'new', heat: c.price===0?'warm':'hot', source:'academy_enrollment', est_value:est,
+    notes:`ACADEMY ENROLLMENT\nClass: ${c.title}\nPrice: ${acPrice(c)}\nEnrolling as: ${type}\nSeats: ${seats}\nBusiness: ${val('ac-f-biz')}\nGoal: ${val('ac-f-notes')}`,
+  };
+  try{ const q=JSON.parse(localStorage.getItem('iebc_intake_queue')||'[]'); q.unshift(rec); localStorage.setItem('iebc_intake_queue',JSON.stringify(q)); }catch(e){}
+  try{ const q=JSON.parse(localStorage.getItem('iebc_academy_enrollments')||'[]'); q.unshift(rec); localStorage.setItem('iebc_academy_enrollments',JSON.stringify(q)); }catch(e){}
+  if(typeof SITE_DB!=='undefined' && SITE_DB){
+    SITE_DB.from('hub_prospects').upsert([{
+      id:rec.id, name, contact:name, email, phone:rec.phone, industry:'Academy',
+      stage:'new', heat:rec.heat, source:'academy_enrollment', notes:rec.notes,
+      est_value:est, created_at:rec.submitted_at,
+    }],{onConflict:'id'}).catch(()=>{});
+    SITE_DB.from('hub_activity').insert([{user_name:'Website', action:'New Academy enrollment', entity:name+' — '+c.title}]).catch(()=>{});
+  }
+  document.getElementById('ac-m-body').innerHTML = `
+    <div style="text-align:center;padding:16px 6px">
+      <div style="font-size:2.6rem;margin-bottom:10px">🎓</div>
+      <div style="font-family:var(--ff-h);font-size:1.35rem;font-weight:800;color:var(--navy);margin-bottom:8px">Your seat is reserved, ${acEsc(name.split(' ')[0])}!</div>
+      <p class="ac-p" style="max-width:480px;margin:0 auto 16px">We've received your ${c.cat==='teams'?'training request':'enrollment'} for <strong>${acEsc(c.title)}</strong>. An IEBC consultant will email <strong>${acEsc(email)}</strong> within one business day${c.price===0?' with your webinar link.':' with a secure payment link, your start date and access details.'}</p>
+      <button class="btn-navy" onclick="acClose()">Back to the Academy</button>
+    </div>`;
+}
+
+function acRenderTeaser(){
+  const el=document.getElementById('ac-teaser-list'); if(!el) return;
+  el.innerHTML=['ai-intro','admin-auto','ai-trucking','cohort-automation'].map(id=>{
+    const c=acFind(id); return `<div class="ac-teaser-item" onclick="showPage('academy');setTimeout(()=>acOpenCourse('${c.id}'),250)">${c.icon} ${acEsc(c.title)}<small>${acEsc(AC_FMT[c.cat])} · ${acPrice(c)}</small></div>`;
+  }).join('');
+}
+
+(function acInit(){
+  const run=()=>{ acRenderTabs(); acRenderGrid(); acRenderTeaser(); const n=document.getElementById('ac-count'); if(n) n.textContent=ACADEMY_COURSES.length; };
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run); else run();
+})();
 </script>
 
 </body>
